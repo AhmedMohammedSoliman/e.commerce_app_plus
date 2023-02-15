@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "896746901040",
+    "project_id": "e-commerce-tharwat-sami",
+    "storage_bucket": "e-commerce-tharwat-sami.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896746901040:android:159c1bfcb87632a3f767f5",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce_tharwat_samy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896746901040-cbadndrgja2a8t4egk6ogng3uvk3ucer.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHvxLChTyXSJz6a6jDaFbfyW83EopevRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896746901040-cbadndrgja2a8t4egk6ogng3uvk3ucer.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

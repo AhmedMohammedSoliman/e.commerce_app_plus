@@ -54,7 +54,11 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> implements Up
             }else {
               /// data
               var productsList = asyncSnapShot.data?.docs.map((product) => product.data()).toList();
-              return ListView.builder(
+              return GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 0.9,
+                      crossAxisCount: 2
+                  ),
                   itemCount: productsList!.length,
                   itemBuilder: (context , index) => InkWell(
                     onTap: (){
@@ -74,8 +78,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> implements Up
             }
           },
         ),
-      ),
-    );
+      ),    );
   }
   void showBottomSheetFun (ProductModel productModel){
     showModalBottomSheet(

@@ -8,9 +8,9 @@ import 'package:e_commerce_tharwat_samy/theming/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-
 import 'features/delete_product_screen/delete_product_screen.dart';
 import 'features/major_screen/major_screen.dart';
+import 'features/show_product_screen/show_products_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
        AddProductScreen.routeName : (context) => AddProductScreen(),
         UpdateProductScreen.routeName : (context) => UpdateProductScreen(),
         DeleteProductScreen.routeName : (context) => DeleteProductScreen(),
+        ShowProductScreen.routeName : (context) => ShowProductScreen(),
       },
       locale: Locale ("en"),
       theme: ThemingData.lightTheme,

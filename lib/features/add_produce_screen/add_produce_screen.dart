@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../update_product_screen/update_product_screen.dart';
+
 class AddProductScreen extends StatefulWidget {
   static const String routeName = "add";
 
@@ -204,4 +206,5 @@ class _AddProductScreenState extends State<AddProductScreen> implements AddProdu
   void uploadImageToFireBase()async{
    viewModel.uploadImage(imageFile!.path);
   }
+
 }

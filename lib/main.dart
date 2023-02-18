@@ -1,13 +1,16 @@
 import 'package:e_commerce_tharwat_samy/features/add_produce_screen/add_produce_screen.dart';
 import 'package:e_commerce_tharwat_samy/features/admin_screen/admin_screen.dart';
 import 'package:e_commerce_tharwat_samy/features/login_screen/login_screen.dart';
+import 'package:e_commerce_tharwat_samy/features/major_screen/product_details/product_details_screen.dart';
 import 'package:e_commerce_tharwat_samy/features/register_screen/register_screen.dart';
 import 'package:e_commerce_tharwat_samy/features/update_product_screen/update_product_screen.dart';
+import 'package:e_commerce_tharwat_samy/providers/card_provider.dart';
 import 'package:e_commerce_tharwat_samy/providers/user_provider.dart';
 import 'package:e_commerce_tharwat_samy/theming/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'features/card_screen/card_screen.dart';
 import 'features/delete_product_screen/delete_product_screen.dart';
 import 'features/major_screen/major_screen.dart';
 import 'features/show_product_screen/show_products_screen.dart';
@@ -17,7 +20,9 @@ void main() async {
   await Firebase.initializeApp();
   runApp(ChangeNotifierProvider(
     create: (context) => UserProvider(),
-      child: const MyApp()));
+      child: ChangeNotifierProvider(
+        create: (context) => CardProvider(),
+          child: const MyApp())));
 }
 
 class MyApp extends StatelessWidget {
@@ -37,6 +42,8 @@ class MyApp extends StatelessWidget {
         UpdateProductScreen.routeName : (context) => UpdateProductScreen(),
         DeleteProductScreen.routeName : (context) => DeleteProductScreen(),
         ShowProductScreen.routeName : (context) => ShowProductScreen(),
+        ProductDetails.routeName : (context) => ProductDetails(),
+        CardScreen.routeName : (context) => CardScreen(),
       },
       locale: Locale ("en"),
       theme: ThemingData.lightTheme,

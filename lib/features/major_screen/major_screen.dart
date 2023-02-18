@@ -1,3 +1,4 @@
+import 'package:e_commerce_tharwat_samy/features/card_screen/card_screen.dart';
 import 'package:e_commerce_tharwat_samy/features/major_screen/products_widget/jackets_widget.dart';
 import 'package:e_commerce_tharwat_samy/features/major_screen/products_widget/shoes_widget.dart';
 import 'package:e_commerce_tharwat_samy/features/major_screen/products_widget/t-shirt_widget.dart';
@@ -82,7 +83,7 @@ class _MajorScreenState extends State<MajorScreen> {
                  Text("Discovery".toUpperCase() , style: TextStyle(color: Colors.red[700] , fontWeight: FontWeight.bold ,
                  fontSize: 18),),
                  IconButton(onPressed: (){
-
+                   Navigator.pushNamed(context, CardScreen.routeName);
                  }, icon: Icon(Icons.shopping_cart_outlined , size: 25, color: Colors.red[700],))
                ],
              ),

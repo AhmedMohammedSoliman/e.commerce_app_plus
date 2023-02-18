@@ -1,9 +1,6 @@
-
 import 'dart:io';
-
 import 'package:e_commerce_tharwat_samy/features/add_produce_screen/add_produt_navigator.dart';
 import 'package:e_commerce_tharwat_samy/features/show_product_screen/show_products_screen.dart';
-import 'package:e_commerce_tharwat_samy/features/update_product_screen/update_product_screen.dart';
 import 'package:e_commerce_tharwat_samy/fireBase/fireBase_fun.dart';
 import 'package:e_commerce_tharwat_samy/models/product_model.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -20,7 +17,8 @@ class AddProductScreenViewModel extends ChangeNotifier {
         category: category,
         image: image,
         description: description,
-        price: price);
+        price: price,
+        count: 0);
       await FireBaseFuns.addProductToFireBase(productModel).then((value) =>
        showDialog(
            context: context,
@@ -35,8 +33,11 @@ class AddProductScreenViewModel extends ChangeNotifier {
                   )));
     }
 
-    void uploadImage (String image)async{
-    var refImage = FirebaseStorage.instance.ref();
-    await refImage.putFile(File(image));
+    Future <String> uploadImage (String image)async{
+    final file = File(image);
+    final firebaseStorageRef = FirebaseStorage.instance.ref().child("images/$image");
+    final uploadImage = await firebaseStorageRef.putFile(file);
+    var imageUrl = FirebaseStorage.instance.ref().child("images/$image").getDownloadURL();
+    return imageUrl ;
     }
 }

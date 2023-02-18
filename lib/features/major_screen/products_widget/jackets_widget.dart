@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce_tharwat_samy/features/major_screen/product_details/product_details_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../fireBase/fireBase_fun.dart';
@@ -44,12 +45,24 @@ class JacketWidget extends StatelessWidget {
                   },
                   child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: AdminProductWidget(
-                        description: products[index].description,
-                        image: products[index].image,
-                        name: products[index].name,
-                        price: products[index].price ,
-                        category: products[index].category,
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.pushNamed(context, ProductDetails.routeName ,arguments:  {
+                            "product" : products[index],
+                            "name" : products[index].name ,
+                            "image" : products[index].image ,
+                            "price" : products[index].price ,
+                            "count" : products[index].count,
+                            "index" : index,
+                          });
+                        },
+                        child: AdminProductWidget(
+                          description: products[index].description,
+                          image: products[index].image,
+                          name: products[index].name,
+                          price: products[index].price ,
+                          category: products[index].category,
+                        ),
                       )
                   ),
                 ));

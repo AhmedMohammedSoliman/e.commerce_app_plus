@@ -5,10 +5,12 @@ class ProductModel {
   String category ;
   String image ;
   String price ;
+  int count ;
+
 
   ProductModel ({
     required this.name , required this.category , required this.image , required this.description ,
-    this.id = "" , required this.price
+    this.id = "" , required this.price , this.count = 0
 });
 
   ProductModel.fromJson(Map<String, Object?> json)
@@ -19,6 +21,8 @@ class ProductModel {
     category: json['category']! as String,
     image: json['image']! as String,
     price: json['price']! as String,
+    count: json['count']! as int,
+
   );
 
   Map<String, Object?> toJson() {
@@ -28,7 +32,9 @@ class ProductModel {
       "description" : description ,
       "category" : category ,
       "image" : image,
-      "price" : price
+      "price" : price ,
+      "count" : count ,
+
     };
   }
 

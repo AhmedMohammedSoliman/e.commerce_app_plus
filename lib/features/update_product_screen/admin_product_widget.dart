@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +30,7 @@ class AdminProductWidget extends StatelessWidget {
                 ),
               ],
             ),
-            child: Image(image: FileImage(File(image)), fit: BoxFit.fill, width: double.infinity,
+            child: Image(image: NetworkImage(image), fit: BoxFit.fill, width: double.infinity,
             height: double.infinity,),
           ) ,
           SizedBox(width: 8,),

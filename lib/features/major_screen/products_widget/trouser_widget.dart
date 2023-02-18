@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../fireBase/fireBase_fun.dart';
 import '../../../models/product_model.dart';
 import '../../update_product_screen/admin_product_widget.dart';
+import '../product_details/product_details_screen.dart';
 
 class TrouserWidget extends StatelessWidget {
   @override
@@ -45,12 +46,24 @@ class TrouserWidget extends StatelessWidget {
                   },
                   child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: AdminProductWidget(
-                        description: products[index].description,
-                        image: products[index].image,
-                        name: products[index].name,
-                        price: products[index].price ,
-                        category: products[index].category,
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.pushNamed(context, ProductDetails.routeName ,arguments:  {
+                            "product" : products[index],
+                            "name" : products[index].name ,
+                            "image" : products[index].image ,
+                            "price" : products[index].price ,
+                            "count" : products[index].count,
+                            "index" : index,
+                          });
+                        },
+                        child: AdminProductWidget(
+                          description: products[index].description,
+                          image: products[index].image,
+                          name: products[index].name,
+                          price: products[index].price ,
+                          category: products[index].category,
+                        ),
                       )
                   ),
                 ));

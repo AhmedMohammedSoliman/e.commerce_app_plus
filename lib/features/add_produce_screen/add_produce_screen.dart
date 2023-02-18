@@ -206,5 +206,4 @@ class _AddProductScreenState extends State<AddProductScreen> implements AddProdu
   void uploadImageToFireBase()async{
    viewModel.uploadImage(imageFile!.path);
   }
-
 }

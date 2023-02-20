@@ -37,7 +37,8 @@ class AddProductScreenViewModel extends ChangeNotifier {
     final file = File(image);
     final firebaseStorageRef = FirebaseStorage.instance.ref().child("images/$image");
     final uploadImage = await firebaseStorageRef.putFile(file);
-    var imageUrl = FirebaseStorage.instance.ref().child("images/$image").getDownloadURL();
+    var imageUrl = await FirebaseStorage.instance.ref().child("images/$image").getDownloadURL();
+    print(imageUrl);
     return imageUrl ;
     }
 }

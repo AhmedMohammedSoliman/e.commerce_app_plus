@@ -4,6 +4,7 @@ import 'package:e_commerce_tharwat_samy/features/login_screen/login_screen.dart'
 import 'package:e_commerce_tharwat_samy/features/major_screen/product_details/product_details_screen.dart';
 import 'package:e_commerce_tharwat_samy/features/register_screen/register_screen.dart';
 import 'package:e_commerce_tharwat_samy/features/update_product_screen/update_product_screen.dart';
+import 'package:e_commerce_tharwat_samy/features/view_orders_screen/view_order_screen.dart';
 import 'package:e_commerce_tharwat_samy/providers/card_provider.dart';
 import 'package:e_commerce_tharwat_samy/providers/user_provider.dart';
 import 'package:e_commerce_tharwat_samy/theming/theme_data.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         ShowProductScreen.routeName : (context) => ShowProductScreen(),
         ProductDetails.routeName : (context) => ProductDetails(),
         CardScreen.routeName : (context) => CardScreen(),
+        ViewOrdersScreen.routeName : (context) => ViewOrdersScreen(),
       },
       locale: Locale ("en"),
       theme: ThemingData.lightTheme,

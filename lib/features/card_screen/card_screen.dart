@@ -1,3 +1,6 @@
+import 'package:e_commerce_tharwat_samy/features/major_screen/product_details/product_details_screen.dart';
+import 'package:e_commerce_tharwat_samy/fireBase/fireBase_fun.dart';
+import 'package:e_commerce_tharwat_samy/models/orders_model.dart';
 import 'package:e_commerce_tharwat_samy/models/product_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +11,7 @@ import '../update_product_screen/admin_product_widget.dart';
 class CardScreen extends StatelessWidget {
   static const String routeName = "card" ;
   late CardProvider provider ;
+  String location = "" ;
   @override
   Widget build(BuildContext context) {
   provider = Provider.of<CardProvider>(context);
@@ -16,6 +20,8 @@ class CardScreen extends StatelessWidget {
         backgroundColor: Colors.orangeAccent,
         elevation: 0,
         iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.red[700]),
+        title: Text("Your card" , style: TextStyle(color: Colors.red[700]),),
+        centerTitle: true,
       ),
       body: Column (
         children: [
@@ -60,7 +66,9 @@ class CardScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width*0.8,
             margin: EdgeInsets.all(10),
             child: ElevatedButton(onPressed:(){
-
+              OrdersModel ordersModel = OrdersModel(products: provider.cardProducts,
+                  totalPrice: totalPrice(provider.cardProducts), location: location);
+                  orderNow(context, provider.cardProducts , ordersModel, location);
             }, child: Text ("Order NOW" .toUpperCase()), style: ElevatedButton.styleFrom(
               primary: Colors.red[700] , shape: StadiumBorder()
             ),),
@@ -70,16 +78,80 @@ class CardScreen extends StatelessWidget {
 
     );
   }
-  void showMenuFun (BuildContext context , double dx , double dy , double dx2 , double dy2 , ProductModel productModel){
+  void showMenuFun (BuildContext context , double dx , double dy , double dx2 , double dy2 , ProductModel productModel ,){
     showMenu(context: context,
         position: RelativeRect.fromLTRB(dx, dy, dx2, dy2),
         items: [
-          PopupMenuItem(child: GestureDetector(
+          PopupMenuItem(
+            child: GestureDetector(
+                onTap: (){
+                  provider.removeFromCard(productModel);
+                  Navigator.popUntil(context, (route) => route.settings.name == ProductDetails.routeName);
+                },
+                child: Text ("Edit")
+            ) ,
+          ),
+          PopupMenuItem(
+            child: GestureDetector(
             onTap: (){
               provider.removeFromCard(productModel);
+              Navigator.pop(context);
             },
-              child: Text ("Delete from card")))
+              child: Text ("Delete from card")
+          ) ,
+          ),
         ]);
     }
-
 }
+ void orderNow (BuildContext context , List<ProductModel> products , OrdersModel ordersModel , String location){
+
+  showDialog(context: context, builder: (context) => AlertDialog(
+    content: Container(
+      height: MediaQuery.of(context).size.height*0.1,
+      child: Column (
+        children: [
+          Text("Total price : ${totalPrice(products)} EGP"),
+          TextFormField(
+            validator: (text){
+              if (text == null || text.trim().isEmpty){
+                return "Please enter location" ;
+              }else {
+                return null ;
+              }
+            },
+            decoration: InputDecoration (
+                 hintText: "Enter your location"
+            ),
+            onChanged: (text){
+              location = text ;
+            },
+          )
+        ],
+      ),
+    ),
+    actions: [
+      TextButton(
+          onPressed: ()async{
+            try {
+            await FireBaseFuns.addOrdersToFireBase(ordersModel).then((value) =>
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Order added Successfully")
+                      )
+                  )
+              );
+            }catch (e){
+              print (e);
+            }
+        Navigator.pop(context);
+
+      }, child: Text("Confirm"))
+    ],
+  ));
+ }
+ int totalPrice (List<ProductModel> products){
+  var totalPr = 0 ;
+  for (var product in products){
+    totalPr += (int.parse(product.price )* product.count) ;
+  }
+  return totalPr;
+ }

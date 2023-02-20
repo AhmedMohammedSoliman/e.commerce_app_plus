@@ -1,8 +1,11 @@
 import 'package:e_commerce_tharwat_samy/features/add_produce_screen/add_produce_screen.dart';
 import 'package:e_commerce_tharwat_samy/features/delete_product_screen/delete_product_screen.dart';
+import 'package:e_commerce_tharwat_samy/features/show_product_screen/show_products_screen.dart';
 import 'package:e_commerce_tharwat_samy/features/update_product_screen/update_product_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../view_orders_screen/view_order_screen.dart';
 
 class AdminScreen extends StatelessWidget {
   static const String routeName = "admin" ;
@@ -46,6 +49,26 @@ class AdminScreen extends StatelessWidget {
                   onPressed: (){
                     Navigator.pushNamed(context, DeleteProductScreen.routeName);
                   }, child: Text ("Delete product") ,
+                  style: ElevatedButton.styleFrom(shape: StadiumBorder(
+                  ) , primary: Colors.orangeAccent),),
+              ),
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.symmetric(horizontal: 40),
+                child: ElevatedButton(
+                  onPressed: (){
+                    Navigator.pushNamed(context, ViewOrdersScreen.routeName);
+                  }, child: Text ("View orders") ,
+                  style: ElevatedButton.styleFrom(shape: StadiumBorder(
+                  ) , primary: Colors.orangeAccent),),
+              ),
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.symmetric(horizontal: 40),
+                child: ElevatedButton(
+                  onPressed: (){
+                    Navigator.pushNamed(context, ShowProductScreen.routeName);
+                  }, child: Text ("View all products") ,
                   style: ElevatedButton.styleFrom(shape: StadiumBorder(
                   ) , primary: Colors.orangeAccent),),
               ),

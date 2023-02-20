@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce_tharwat_samy/models/orders_model.dart';
 import 'package:e_commerce_tharwat_samy/models/product_model.dart';
 import 'package:e_commerce_tharwat_samy/models/user_model.dart';
 
@@ -46,8 +47,27 @@ class FireBaseFuns {
         "image" : image
     });
   }
-
   static Future<void> deleteProductFromFireBase (String productId){
     return getProductCollectionFromFireBase().doc(productId).delete();
+  }
+
+
+
+  static CollectionReference<OrdersModel> getOrdersCollectionFromFireBase (){
+    return FirebaseFirestore.instance.collection('product').doc().collection("orders").withConverter<OrdersModel>(
+        fromFirestore: (snapshot, _) => OrdersModel.fromJson(snapshot.data()!),
+        toFirestore: (order, _) => order.toJson()
+    );
+  }
+
+  static Future <void> addOrdersToFireBase (OrdersModel ordersModel){
+   var collection =  getOrdersCollectionFromFireBase();
+   var doc = collection.doc();
+   ordersModel.id = doc.id ;
+   return doc.set(ordersModel);
+  }
+
+  static Stream<QuerySnapshot<OrdersModel>> getOrdersFromFireBase(){
+   return  getOrdersCollectionFromFireBase().snapshots() ;
   }
 }

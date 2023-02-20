@@ -13,7 +13,7 @@ class ProductDetails extends StatefulWidget{
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-  int counter = 0;
+  int counter = 1;
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<CardProvider>(context);
@@ -87,7 +87,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     child: ElevatedButton(onPressed: (){
                       provider.showSnackFun(args["product"], context);
                       provider.addToCard(args["product"]);
-                      provider.cardProducts[args["index"]].count = counter ;
+                      provider.cardProducts[args["index"]].count = counter  ;
                     }, child: Text("Add to card" .toUpperCase()) , style: ElevatedButton.styleFrom(
                       shape: StadiumBorder() , primary: Colors.orangeAccent
                     ),),
@@ -105,7 +105,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     setState((){});
   }
   void decrementCount (){
-    if (counter >0){
+    if (counter >1){
       counter -- ;
       setState((){});
     }

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:e_commerce_tharwat_samy/features/add_produce_screen/add_product_view_model.dart';
 import 'package:e_commerce_tharwat_samy/features/add_produce_screen/add_produt_navigator.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -203,7 +204,7 @@ class _AddProductScreenState extends State<AddProductScreen> implements AddProdu
      viewModel.addProductFun(name, category, imageFile!.path, description , context , price);
    }
   }
-  void uploadImageToFireBase()async{
-   viewModel.uploadImage(imageFile!.path);
-  }
+     void uploadImageToFireBase()async{
+      viewModel.uploadImage(imageFile!.path);
+    }
 }

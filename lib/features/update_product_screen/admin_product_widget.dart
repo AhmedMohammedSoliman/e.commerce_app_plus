@@ -1,7 +1,8 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AdminProductWidget extends StatelessWidget {
+class AdminProductWidget extends StatefulWidget {
   String image ;
   String name ;
   String description ;
@@ -10,6 +11,18 @@ class AdminProductWidget extends StatelessWidget {
   AdminProductWidget ({required this.name , required this.image , required this.description,
   required this.category
   , required this.price });
+
+  @override
+  State<AdminProductWidget> createState() => _AdminProductWidgetState();
+}
+
+class _AdminProductWidgetState extends State<AdminProductWidget> {
+
+  @override
+  void initState() {
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,7 +43,7 @@ class AdminProductWidget extends StatelessWidget {
                 ),
               ],
             ),
-            child: Image(image: NetworkImage(image), fit: BoxFit.fill, width: double.infinity,
+            child: Image(image: NetworkImage(widget.image), fit: BoxFit.fill, width: double.infinity,
             height: double.infinity,),
           ) ,
           SizedBox(width: 8,),
@@ -47,14 +60,13 @@ class AdminProductWidget extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                Text("${name}" , style: TextStyle(color: Colors.black , fontSize: 18 ),) ,
-                   Text("${price} EGP" , style: TextStyle(color: Colors.black ,
+                Text("${widget.name}" , style: TextStyle(color: Colors.black , fontSize: 18 ),) ,
+                   Text("${widget.price} EGP" , style: TextStyle(color: Colors.black ,
                   fontSize: 18)),
                 ],
               ),
             ),
           )
-
         ],
       ),
     );
